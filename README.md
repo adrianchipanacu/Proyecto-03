@@ -31,3 +31,10 @@
     secuencias de tokens conforme a las reglas formales del AP.
   </p>
 </section>
+
+<div style="background:#f5f5f5; padding:15px; border-radius:10px;">
+  <h3>Sección con fondo</h3>
+  <p>
+    Aquí puedes colocar texto, explicaciones, advertencias o cualquier contenido.
+  </p>
+</div>
