@@ -33,7 +33,7 @@
 </section>
 
 
-## 🎯 Objetivos del Autómata
+## Objetivos del Autómata
 
 - Validar expresiones formadas por operadores binarios y operandos simples en notación prefija.  
 - Garantizar que cada operador cuente con exactamente dos operandos, directa o recursivamente.  
@@ -42,7 +42,7 @@
 - Proveer un modelo verificable en JFLAP para fines didácticos, experimentales o de análisis formal.
 
 
-## ⚙️ Características del Autómata (Requerimientos)
+## Características del Autómata (Requerimientos)
 
 A continuación se presentan los requerimientos del autómata expresados como **secuencia lógica de pasos**, sin aludir a estados ni a detalles internos de implementación.
 
@@ -163,14 +163,9 @@ struct Nodo {
   funcionar.
 </p>
 
+## Autómata de referencia
 
-<div style="background:#272822; padding:15px; border-radius:10px; color:white;">
-  
-  <pre>
-<code>
-def sumar(a, b):
-    return a + b
-</code>
-  </pre>
+Este es el autómata (por ahora) que usaremos para crear un validador de operaciones en prefijo. Desarrollado en jflap, sigue los requerimientos anteriormente indicados
 
-</div>
+/img/diagrama.png
+
