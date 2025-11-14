@@ -32,11 +32,6 @@
   </p>
 </section>
 
-# 🧩 Autómata de Pila para Validar Expresiones en Notación Prefija
-
-Este proyecto implementa un Autómata de Pila (AP) capaz de validar expresiones en **notación prefija** (o notación polaca), verificando que la estructura sintáctica sea correcta y que cada operador tenga exactamente dos operandos.
-
----
 
 ## 🎯 Objetivos del Autómata
 
