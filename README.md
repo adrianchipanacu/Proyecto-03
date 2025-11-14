@@ -41,61 +41,56 @@
 - Aceptar únicamente expresiones completamente estructuradas y sin operaciones pendientes.  
 - Proveer un modelo verificable en JFLAP para fines didácticos, experimentales o de análisis formal.
 
----
 
 ## ⚙️ Características del Autómata (Requerimientos)
 
 A continuación se presentan los requerimientos del autómata expresados como **secuencia lógica de pasos**, sin aludir a estados ni a detalles internos de implementación.
 
-### ✔ C1. Interpretación inicial  
+### 1. Interpretación inicial  
 El autómata debe aceptar que una expresión pueda iniciar con un operador o con un operando, según la forma estándar de la notación prefija.
 
-### ✔ C2. Apertura de operaciones pendientes  
+### 2. Apertura de operaciones pendientes  
 Cada vez que se lea un operador binario, se incrementa la cantidad de operandos pendientes por completar. Esto indica que la expresión está abriendo una nueva subestructura.
 
-### ✔ C3. Cierre de operandos pendientes  
+### 3. Cierre de operandos pendientes  
 Cada operando leído debe disminuir la cantidad de operandos que aún deben procesarse, representando el avance en la construcción de la expresión.
 
-### ✔ C4. Reducción inmediata de subexpresiones  
+### 4. Reducción inmediata de subexpresiones  
 Cuando una operación obtiene todos sus operandos necesarios, debe considerarse “resuelta”.  
 Si esta resolución permite finalizar otras operaciones, deben cerrarse de inmediato y de manera sucesiva, sin requerir más símbolos de entrada.
 
-### ✔ C5. Continuación flexible  
+### 5. Continuación flexible  
 Después de reducir una operación, la expresión puede seguir creciendo libremente.  
 Pueden aparecer operadores que abran subexpresiones adicionales o aparecer operandos que completen estructuras existentes.
 
-### ✔ C6. Expresión mínima válida  
+### 6. Expresión mínima válida  
 Una expresión que consista únicamente en un operando simple debe considerarse válida.
 
-### ✔ C7. Criterio de aceptación  
+### 7. Criterio de aceptación  
 La expresión completa solo es válida si:
 - Se han consumido todos los símbolos de entrada.  
 - No quedan operaciones pendientes por completar.
 
-### ✔ C8. Criterio de rechazo  
+### 8. Criterio de rechazo  
 La expresión debe rechazarse si ocurre alguno de estos casos:
 - Existen más operandos de los necesarios.  
 - Falta al menos un operando para completar una operación.  
 - La expresión se prolonga tras haber sido completamente resuelta.  
 - La cadena termina con operaciones incompletas.
 
-### ✔ C9. Extensibilidad  
-La lógica del procesamiento debe permitir agregar fácilmente más operadores u operandos sin alterar el comportamiento global del sistema.
-
----
 
 
 
-<h2>Marco Teórico: Pilas, Autómatas de Pila y C++</h2>
+<h2>Conceptos importantes</h2>
 <p>
-  Este documento describe los conceptos fundamentales de las estructuras de datos de
-  tipo Pila, su aplicación en los Autómatas de Pila y cómo pueden ser
-  representados en C++ usando <code>struct</code>.
+  Es necesario dejar en claro algunos aspectos en relación a como se desarrolla el autómata
+  buscado, en este caso necesitamos explicar las estructuras básicas que utilizaremos dentro 
+  del lenguaje c++ para construir nuestro autómata.
 </p>
 
 <hr />
 
-<h3>1. Pilas (Stacks)</h3>
+<h3>Pilas (Stacks)</h3>
 <p>
   Una <strong>pila</strong> (o <i>stack</i>) es una estructura de datos
   lineal que opera bajo el principio <strong>LIFO</strong> (Last-In,
@@ -128,7 +123,7 @@ La lógica del procesamiento debe permitir agregar fácilmente más operadores u
 <hr />
 
 
-<h3>3. Representación con <code>struct</code> en C++</h3>
+<h3>Representación de una pila con <code>struct</code> en C++</h3>
 <p>
   En C++, una <code>struct</code> es un tipo de dato definido por el usuario que
   permite agrupar variables de diferentes tipos bajo un mismo nombre. Es una
