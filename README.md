@@ -32,9 +32,13 @@
   </p>
 </section>
 
-<div style="background:#f5f5f5; padding:15px; border-radius:10px;">
-  <h3>Sección con fondo</h3>
-  <p>
-    Aquí puedes colocar texto, explicaciones, advertencias o cualquier contenido.
-  </p>
+<div style="background:#272822; padding:15px; border-radius:10px; color:white;">
+  
+  <pre>
+<code>
+def sumar(a, b):
+    return a + b
+</code>
+  </pre>
+
 </div>
