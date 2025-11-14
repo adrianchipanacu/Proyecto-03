@@ -167,5 +167,5 @@ struct Nodo {
 
 Este es el autómata (por ahora) que usaremos para crear un validador de operaciones en prefijo. Desarrollado en jflap, sigue los requerimientos anteriormente indicados
 
-/img/diagrama.png
+/image/diagrama.png
 
