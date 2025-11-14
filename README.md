@@ -32,6 +32,65 @@
   </p>
 </section>
 
+# 🧩 Autómata de Pila para Validar Expresiones en Notación Prefija
+
+Este proyecto implementa un Autómata de Pila (AP) capaz de validar expresiones en **notación prefija** (o notación polaca), verificando que la estructura sintáctica sea correcta y que cada operador tenga exactamente dos operandos.
+
+---
+
+## 🎯 Objetivos del Autómata
+
+- Validar expresiones formadas por operadores binarios y operandos simples en notación prefija.  
+- Garantizar que cada operador cuente con exactamente dos operandos, directa o recursivamente.  
+- Simular la reducción estructural propia de un árbol sintáctico, resolviendo subexpresiones a medida que se completan.  
+- Aceptar únicamente expresiones completamente estructuradas y sin operaciones pendientes.  
+- Proveer un modelo verificable en JFLAP para fines didácticos, experimentales o de análisis formal.
+
+---
+
+## ⚙️ Características del Autómata (Requerimientos)
+
+A continuación se presentan los requerimientos del autómata expresados como **secuencia lógica de pasos**, sin aludir a estados ni a detalles internos de implementación.
+
+### ✔ C1. Interpretación inicial  
+El autómata debe aceptar que una expresión pueda iniciar con un operador o con un operando, según la forma estándar de la notación prefija.
+
+### ✔ C2. Apertura de operaciones pendientes  
+Cada vez que se lea un operador binario, se incrementa la cantidad de operandos pendientes por completar. Esto indica que la expresión está abriendo una nueva subestructura.
+
+### ✔ C3. Cierre de operandos pendientes  
+Cada operando leído debe disminuir la cantidad de operandos que aún deben procesarse, representando el avance en la construcción de la expresión.
+
+### ✔ C4. Reducción inmediata de subexpresiones  
+Cuando una operación obtiene todos sus operandos necesarios, debe considerarse “resuelta”.  
+Si esta resolución permite finalizar otras operaciones, deben cerrarse de inmediato y de manera sucesiva, sin requerir más símbolos de entrada.
+
+### ✔ C5. Continuación flexible  
+Después de reducir una operación, la expresión puede seguir creciendo libremente.  
+Pueden aparecer operadores que abran subexpresiones adicionales o aparecer operandos que completen estructuras existentes.
+
+### ✔ C6. Expresión mínima válida  
+Una expresión que consista únicamente en un operando simple debe considerarse válida.
+
+### ✔ C7. Criterio de aceptación  
+La expresión completa solo es válida si:
+- Se han consumido todos los símbolos de entrada.  
+- No quedan operaciones pendientes por completar.
+
+### ✔ C8. Criterio de rechazo  
+La expresión debe rechazarse si ocurre alguno de estos casos:
+- Existen más operandos de los necesarios.  
+- Falta al menos un operando para completar una operación.  
+- La expresión se prolonga tras haber sido completamente resuelta.  
+- La cadena termina con operaciones incompletas.
+
+### ✔ C9. Extensibilidad  
+La lógica del procesamiento debe permitir agregar fácilmente más operadores u operandos sin alterar el comportamiento global del sistema.
+
+---
+
+
+
 <h2>Marco Teórico: Pilas, Autómatas de Pila y C++</h2>
 <p>
   Este documento describe los conceptos fundamentales de las estructuras de datos de
@@ -73,38 +132,6 @@
 
 <hr />
 
-<h3>2. Autómatas de Pila (Pushdown Automata)</h3>
-<p>
-  Un <strong>autómata de pila</strong> (PDA, por sus siglas en inglés) es un
-  modelo de computación teórico. Es más capaz que un autómata finito (que no
-  tiene memoria), pero menos capaz que una máquina de Turing (que tiene memoria
-  de acceso aleatorio).
-</p>
-<p>
-  La característica distintiva de un PDA es que utiliza una
-  <strong>pila</strong> (la estructura de datos LIFO) como memoria auxiliar.
-</p>
-<p>
-  Las transiciones de un PDA (es decir, sus "decisiones") se basan en tres
-  factores:
-</p>
-<ol>
-  <li>El estado actual en el que se encuentra.</li>
-  <li>El símbolo de entrada que está leyendo.</li>
-  <li>El símbolo que se encuentra en el <b>tope</b> de la pila.</li>
-</ol>
-<p>
-  Al realizar una transición, el autómata puede cambiar de estado y,
-  crucialmente, puede realizar operaciones <code>push</code> o
-  <code>pop</code> en su pila.
-</p>
-<p>
-  Los autómatas de pila son el mecanismo formal para reconocer
-  <strong>Lenguajes Libres de Contexto</strong> (CFL), como por ejemplo, el
-  lenguaje de paréntesis balanceados <code>( ( ) ( ) )</code>.
-</p>
-
-<hr />
 
 <h3>3. Representación con <code>struct</code> en C++</h3>
 <p>
