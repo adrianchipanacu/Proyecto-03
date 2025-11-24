@@ -206,7 +206,7 @@ struct Pila {
   derecha a izquierda.
 </p>
 
-![image alt](https://github.com/adrianchipanacu/Proyecto-03/blob/ca1496dad6ce271e96c0be00f140da907efb6e6c/image/Diagrama%20de%20Aut%C3%B3mata.png)
+![image alt](https://github.com/adrianchipanacu/Proyecto-03/blob/78dfda91ef895266d8b34ca4345c6b5fd75baab0/Aut%C3%B3mata_Referencia.png)
 
 <h4>Implementación de la estructura y algoritmo de Autómata dentro de C++</h4>
 
