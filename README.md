@@ -208,6 +208,7 @@ struct Pila {
 
 ![image alt](https://github.com/adrianchipanacu/Proyecto-03/blob/78dfda91ef895266d8b34ca4345c6b5fd75baab0/Aut%C3%B3mata_Referencia.png)
 
+<hr />
 <h3>Implementación de la estructura y algoritmo de Autómata dentro de C++</h3>
 
 <p>
@@ -384,6 +385,7 @@ int main() {
 }
 </code></pre>
 
+<hr />
 <h3>Casos de Prueba</h3>
 <p>
   Probaremos una 3 casos, uno correcto y 2 incorrectos.
@@ -447,6 +449,7 @@ int main() {
   Pila no vacía, cadena NO aceptada y NO se muestra resultado.
 </p>
 
+<hr />
 <h3>Conclusiones</h3>
 
 <p>
