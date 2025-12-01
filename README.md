@@ -408,7 +408,7 @@ int main() {
 <p><strong>Windows:</strong></p>
 <pre><code>notepad [nombre_archivo].cpp</code></pre>
 
-<p>Pegar el código del programa y guardar.</p>
+<p>Pegar el código del programa y guardar. También puede usar editores de código como VSCode y guardar los cambios.</p>
 
 <h4>3. Compilar el programa</h4>
 
@@ -450,7 +450,22 @@ int main() {
   <li>Las transiciones realizadas por el autómata</li>
   <li>El resultado de la operación</li>
 </ul>
-
+<p>
+  El formato del resultado impreso en "resultado.txt" tiene un formato que se compone de 6 columnas.
+  Las leemos de derecas a izquierda y explicamos que signifca cada una:
+</p>
+<ul>
+  <li>1. Simbolo leído de la cadena</li>
+  <li>2. Tope de pila actual, se desapila. Pueden ir uno o más símbolos.</li>
+  <li>3. Estado actual del autómata.</li>
+  <li>4. Nuevo estado actual.</li>
+  <li>5. Simbolos apilados antes de terminar la transición.</li>
+  <li>6. Vista general de la pila tras cada transición. Los últimos símbolos apilados están a la izquierda</li>
+</ul>
+<p>
+  Cabe aclarar que los símbolos usados para la Pila representativa son la "Z" como el fondo y la "X" para cada número
+  entero o decimal.
+</p>
 
 
 <hr />
