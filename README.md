@@ -474,7 +474,7 @@ int main() {
   Probaremos una 3 casos, uno correcto y 2 incorrectos.
   
   CASO CORRECTO:
-  + * 5 6 3
+  <code>+ * 5 6 3</code>
 </p>
 
 <pre><code>
@@ -493,7 +493,7 @@ int main() {
   
   
   CASO INCORRECTO (FALTA OPERANDOS):
-  &#43 5
+  <code>+ 5</code>
 </p>
 <pre><code>
   5	Z	q0		q1	XZ	XZ
@@ -503,7 +503,7 @@ int main() {
 
   
   CASO INCORRECTO (SOBRAN OPERANDOS):
-  &#43 5 5 5
+  <code>+ 5 5 5</code>
 </p>
 <pre><code>
   5	Z	q0		q1	XZ	XZ
