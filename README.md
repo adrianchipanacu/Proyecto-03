@@ -386,40 +386,70 @@ int main() {
 </code></pre>
 
 <hr />
-<h3>Guia de Uso</h3>
-<h4>Pasos para la compilación correcta</h4>
-<p>
-  1. Verificar que se tiene instalado el compilador de C++ tanto en Windows o Linux.
-  2. Crear un archivo de texto mediante el comando:
-<pre><code>
-  nano [nombre_archivo].cpp
-</pre></code>
-  donde pegaremos el código del programa.\n
-  3. Una vez guardado el proyecto, se compila el .cpp con el comando
-  <pre><code>
-    g++ [nombre_archivo].cpp -o [nombre_archivo]
-  </code></pre>
-  4. Se crea un documento .txt donde colocaremos la cadena que leerá el autómada, con el siguiente comando
-  <pre><code>
-    nano documento.txt
-  </code></pre>
-  luego se inserta los operandos y operadores. OJO: Deben estar separados por saltos de linea. Ejemplo
-  <pre><code>
-    +
-    -
-    5
-    3
-    1
-  </code></pre>
-  salimos con ctrl + o + enter y luego ctrl + x + enter.\n 
-  5. Ejecutamos el programa con el siguiente comando
-  <pre><code>
-    ./[nombre_archivo]
-  </code></pre>
-  6. Verificamos que se ha creado un nuevo documento de texto llamado "resultado.txt", donde  observaremos
-  las transiciones realizadas por el autómata y el resultado de la operación.
-  
-</p>
+<h2>📘 Guía de Uso</h2>
+
+<h3>🔧 Pasos para la compilación y ejecución correcta (Linux y Windows)</h3>
+
+<h4>1. Verificar instalación del compilador C++</h4>
+<ul>
+  <li><strong>Linux:</strong> Puede instalarse con:
+    <pre><code>sudo apt install g++</code></pre>
+  </li>
+  <li><strong>Windows:</strong> Instalar MinGW-w64 o MSYS2. Luego verificar con:
+    <pre><code>g++ --version</code></pre>
+  </li>
+</ul>
+
+<h4>2. Crear el archivo <code>.cpp</code></h4>
+
+<p><strong>Linux:</strong></p>
+<pre><code>nano [nombre_archivo].cpp</code></pre>
+
+<p><strong>Windows:</strong></p>
+<pre><code>notepad [nombre_archivo].cpp</code></pre>
+
+<p>Pegar el código del programa y guardar.</p>
+
+<h4>3. Compilar el programa</h4>
+
+<p><strong>Linux:</strong></p>
+<pre><code>g++ [nombre_archivo].cpp -o [nombre_archivo]</code></pre>
+
+<p><strong>Windows:</strong></p>
+<pre><code>g++ [nombre_archivo].cpp -o [nombre_archivo].exe</code></pre>
+
+<h4>4. Crear el archivo de entrada <code>.txt</code></h4>
+
+<p><strong>Linux:</strong></p>
+<pre><code>nano documento.txt</code></pre>
+
+<p><strong>Windows:</strong></p>
+<pre><code>notepad documento.txt</code></pre>
+
+<p>Escribir los operadores y operandos separados por saltos de línea. Ejemplo:</p>
+
+<pre><code>+
+-
+5
+3
+1
+</code></pre>
+
+<h4>5. Ejecutar el programa</h4>
+
+<p><strong>Linux:</strong></p>
+<pre><code>./[nombre_archivo]</code></pre>
+
+<p><strong>Windows:</strong></p>
+<pre><code>.\[nombre_archivo].exe</code></pre>
+
+<h4>6. Verificar resultados</h4>
+
+<p>Se generará automáticamente un archivo <code>resultado.txt</code> con:</p>
+<ul>
+  <li>Las transiciones realizadas por el autómata</li>
+  <li>El resultado de la operación</li>
+</ul>
 
 
 
