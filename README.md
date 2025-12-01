@@ -474,7 +474,7 @@ int main() {
   Probaremos una 3 casos, uno correcto y 2 incorrectos.
   
   CASO CORRECTO:
-  &#43 &#42 5 6 3
+  + * 5 6 3
 </p>
 
 <pre><code>
