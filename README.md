@@ -208,7 +208,7 @@ struct Pila {
 
 ![image alt](https://github.com/adrianchipanacu/Proyecto-03/blob/78dfda91ef895266d8b34ca4345c6b5fd75baab0/Aut%C3%B3mata_Referencia.png)
 
-<h4>Implementación de la estructura y algoritmo de Autómata dentro de C++</h4>
+<h3>Implementación de la estructura y algoritmo de Autómata dentro de C++</h3>
 
 <p>
   Tratando de simular en anterior autómata, el siguiente código lee un string
@@ -384,7 +384,7 @@ int main() {
 }
 </code></pre>
 
-<h4>Casos de Prueba</h4>
+<h3>Casos de Prueba</h3>
 <p>
   Probaremos una 3 casos, uno correcto y 2 incorrectos.
   
@@ -447,7 +447,7 @@ int main() {
   Pila no vacía, cadena NO aceptada y NO se muestra resultado.
 </p>
 
-<h4>Conclusiones</h4>
+<h3>Conclusiones</h3>
 
 <p>
   Eficacia de los Autómatas de Pila en el Parsing: Se demostró que los Autómatas de Pila (PDA) son la herramienta computacional idónea para validar Gramáticas Libres de Contexto (GLC), como las expresiones matemáticas. A diferencia de un Autómata Finito Determinista (DFA) simple que no tiene memoria, el PDA utiliza la pila para "recordar" operandos pendientes, asegurando que cada operador tenga sus dos argumentos correspondientes antes de proceder. 
