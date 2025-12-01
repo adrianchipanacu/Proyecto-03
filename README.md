@@ -386,6 +386,44 @@ int main() {
 </code></pre>
 
 <hr />
+<h3>Guia de Uso</h3>
+<h4>Pasos para la compilación correcta</h4>
+<p>
+  1. Verificar que se tiene instalado el compilador de C++ tanto en Windows o Linux.
+  2. Crear un archivo de texto mediante el comando:
+<pre><code>
+  nano [nombre_archivo].cpp
+</pre></code>
+  donde pegaremos el código del programa.
+  3. Una vez guardado el proyecto, se compila el .cpp con el comando
+  <pre><code>
+    g++ [nombre_archivo].cpp -o [nombre_archivo]
+  </code></pre>
+  4. Se crea un documento .txt donde colocaremos la cadena que leerá el autómada, con el siguiente comando
+  <pre><code>
+    nano documento.txt
+  </code></pre>
+  luego se inserta los operandos y operadores. OJO: Deben estar separados por saltos de linea. Ejemplo
+  <pre><code>
+    +
+    -
+    5
+    3
+    1
+  </code></pre>
+  salimos con ctrl + o + enter y luego ctrl + x + enter. 
+  5. Ejecutamos el programa con el siguiente comando
+  <pre><code>
+    ./[nombre_archivo]
+  </code></pre>
+  6. Verificamos que se ha creado un nuevo documento de texto llamado "resultado.txt", donde  observaremos
+  las transiciones realizadas por el autómata y el resultado de la operación.
+  
+</p>
+
+
+
+<hr />
 <h3>Casos de Prueba</h3>
 <p>
   Probaremos una 3 casos, uno correcto y 2 incorrectos.
@@ -405,23 +443,6 @@ int main() {
   33
 </code></pre>
 
-<p>
-  Probaremos una 3 casos, uno correcto y 2 incorrectos.
-  
-  CASO CORRECTO:
-  + * 5 6 3
-</p>
-
-<pre><code>
-  3	Z	q0		q1	XZ	XZ
-  6	X	q1		q1	XX	XXZ
-  5	X	q1		q1	XX	XXXZ
-  *	XX	q1		q1	X	XXZ
-  +	XX	q1		q1	X	XZ
-  λ	XZ	q1		q2	Z	Z
-  λ	Z	q2		q2	λ	λ
-  33
-</code></pre>
 <p>
   Pila vacía, cadena aceptada y resultado mostrado.
   
