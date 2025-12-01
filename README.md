@@ -394,7 +394,7 @@ int main() {
 <pre><code>
   nano [nombre_archivo].cpp
 </pre></code>
-  donde pegaremos el código del programa.
+  donde pegaremos el código del programa.\n
   3. Una vez guardado el proyecto, se compila el .cpp con el comando
   <pre><code>
     g++ [nombre_archivo].cpp -o [nombre_archivo]
@@ -411,7 +411,7 @@ int main() {
     3
     1
   </code></pre>
-  salimos con ctrl + o + enter y luego ctrl + x + enter. 
+  salimos con ctrl + o + enter y luego ctrl + x + enter.\n 
   5. Ejecutamos el programa con el siguiente comando
   <pre><code>
     ./[nombre_archivo]
