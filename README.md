@@ -221,93 +221,241 @@ struct Pila {
 <pre><code>
 #include<iostream>
 #include<sstream>
+#include<fstream>
+
 using namespace std;
 
+// Creamos un struct que será el nodo de nuestra pila
 struct Nodo {
-    double var;
-    Nodo *sig;
-    Nodo(double val){ var = val; sig = nullptr; }
+    double var;     // Almacena los operandos
+    Nodo *sig;      // Apunta al siguiente nodo, necesario para unirlos
+
+    // Este es el constructor del nodo, lo usaremos para apilar nuevos elementos en la pila
+    Nodo(double val){
+        var = val;
+        sig = nullptr;
+    }
 };
 
+// Tomando como base el struct Nodo, creamos la Pila que apuntará a la cabeza de nuestra pila, así podremos apilar o desapilar elementos
 struct Pila {
     Nodo *puntero;
     int tam;
-    Pila(){ puntero = nullptr; tam = 0; }
 
-    void apilar(double val){
+    // Su constructo, donde también definimos su tamaño inicial
+    Pila() {
+        puntero = nullptr;
+        tam = 0;
+    }
+
+    // La función apilar, donde crearemos un nuevo nodo para cada nuevo elemento
+    void apilar(double val) {
+        
         Nodo *nuevo = new Nodo(val);
         nuevo->sig = puntero;
         puntero = nuevo;
-        cout<<"Apilamos el operando "<<val<<endl<<endl;
         tam++;
     }
 
-    void desapilar(){
-        if(!puntero){ cout<<"\nLa pila ya está vacía.\n"; return; }
+    // La función desapilar ajusta el puntero principal de la pila y elimina último nodo
+    void desapilar() {
+        if(puntero == nullptr) {
+            cout<<"\nLa pila ya está vacía.\n";
+            return;
+        }
         Nodo *temp = puntero;
-        double valor = puntero->var;
         puntero = puntero->sig;
         delete temp;
-        cout<<"Desapilamos el valor "<<valor<<endl<<endl;
         tam--;
     }
 
-    double verTope(){
-        if(!puntero){ cout<<"Faltan operandos. La cadena no es aceptada.\n"; exit(1); }
-        return puntero->var;
+    // Obtenemos el últimor valor apilado. Si no hay, salimos del programa, faltan operandos.
+    double verTope() {
+        if (puntero == nullptr) {
+            exit(1);
+        }
+        return puntero->var;  
     }
+
+    string verPila(){
+        string lista;
+        if(tam == 0){
+            return "";
+        }
+        for(int i = 0; i < tam; i++) {
+            lista += "X";
+        }
+        lista += "Z";
+        return lista;
+    }
+
 };
 
-int main(){
-    Pila *pila = new Pila();
-    string entrada, cadena[100];
-    int indice = 0;
+int main() {
 
-    cout<<"------------------------------------------------------------\n";
-    cout<<"-------- Evaluador y validador Prefijo con Autómata --------\n";
-    cout<<"------------------------------------------------------------\n\n";
+    Pila  *pila = new Pila();
+    string token;             // String para ingresar la cadena, divida por espacios
+    string cadena[100];         // Donde registraremos cada elemento de la cadena
+    int indice = -1;             
 
-    cout<<"Ingrese la cadena a evaluar, separe los operandos y operadores por espacios: \n";
-    getline(cin, entrada);
-    cout<<endl<<endl;
+    ifstream entrada("documento.txt");
+    ofstream pasos("resultado.txt", ios::out | ios::trunc);
 
-    stringstream elementos(entrada);
-    while(elementos >> cadena[indice] && indice < 100) indice++;
+    do {
+        indice++;
+        getline(entrada, cadena[indice]);
+        if(indice == 100) {
+            pasos<<"Cadena sobrepadasa, inserte una pila más corta.";
+            return 1;
+        }
+    } while (cadena[indice].length() > 0);
 
-    for(int i = indice - 1; i >= 0; i--){
-        double num;
-        entrada = cadena[i];
 
-        if(isdigit(entrada[0])){
-            pila->apilar(stod(entrada));
-        } else {
-            double operando1 = pila->verTope(); pila->desapilar();
-            double operando2 = pila->verTope(); pila->desapilar();
+    // El bucle lee de derecha a izquierda, como se requiere para el orden prefijo
+    for(int i = indice - 1; i >= 0; i--) {
 
-            if(entrada == "+") num = operando1 + operando2;
-            else if(entrada == "-") num = operando1 - operando2;
-            else if(entrada == "/"){
-                if(operando2 == 0){ cout<<"Operanción inválida, no se puede dividir entre 0. El resultado es indefinido."; exit(1); }
-                num = operando1 / operando2;
+        double num;             
+        token = cadena[i];
+
+        // Comprobamos que sea un operando y si lo es lo apilamos
+        if(isdigit(token[0])) {
+            pila->apilar(stod(token));
+
+            if(i == indice - 1) {
+                pasos<<token<<"\tZ\tq0\t\t"<<"q1\tXZ\t"<<pila->verPila();
             }
-            else if(entrada == "*") num = operando1 * operando2;
-            else { cout<<"Simbolo no válido. La cadena no es aceptada."; return 1; }
+            else {
+                pasos<<token<<"\tX\tq1\t\t"<<"q1\tXX\t"<<pila->verPila();
+            }
+            pila->verPila();
+            pasos<<endl;
+        }
+        // Si no es un operando, analizamos que operador es. En cada caso se aplica la operación y se inserta en la pila
+        else {
+            double operando1 = pila->verTope();
+            pila->desapilar();
+            double operando2 = pila->verTope();
+            pila->desapilar();
 
-            pila->apilar(num);
+            if(token == "+") {
+                num = operando1 + operando2;
+                pila->apilar(num);
+            }
+            else if(token == "-") {
+                num = operando1 - operando2;
+                pila->apilar(num);
+            }
+            else if(token == "/") {
+                if(operando2 == 0) {
+                    cout<<"Operanción inválida, no se puede dividir entre 0. El resultado es indefinido.";
+                    exit(1);
+                }
+                num = operando1 / operando2;
+                pila->apilar(num);
+            }else if(token == "*") {
+                num = operando1 * operando2;
+                pila->apilar(num);
+            }
+            // Si el simbolo no está en el alfabeto, la cadena se invalida
+            else {
+                cout<<"Simbolo no válido. La cadena no es aceptada.";
+                return 1;
+            }
+            pasos<<token<<"\tXX\tq1\t\t"<<"q1\tX\t"<<pila->verPila();
+            pila->verPila();
+            pasos<<endl;
         }
     }
-
-    if(pila->tam == 0) cout<<"Cadena vacía. No se ha procesado ninguna opración.";
-    else if(pila->tam > 1) cout<<"Sobrando operandos. La cadena no es válida";
+    // Evaluamos casos de la pila vacía o si sobran operandos
+    if(pila->tam == 0) {
+        cout<<"Cadena vacía. No se ha procesado ninguna operación.";
+    }
+    else if(pila->tam > 1) {
+        cout<<"Sobrando operandos. La cadena no es válida";
+    }
+    // Si no hay errores, imprimimos el resultado
     else {
-        cout<<"La cadena es aceptada.\n";
-        cout<<"El resultado de la pila es: "<<pila->verTope();
+        pasos<<"λ\tXZ\tq1\t\t"<<"q2\tZ\tZ"<<endl;
+        pasos<<"λ\tZ\tq2\t\t"<<"q2\tλ\tλ"<<endl;
+        pasos<<pila->verTope();
+        pila->desapilar();
     }
     return 0;
 }
 </code></pre>
 
+<h4>Casos de Prueba</h4>
+<p>
+  Probaremos una 3 casos, uno correcto y 2 incorrectos.
+  
+  CASO CORRECTO:
+  + * 5 6 3
+</p>
 
+<pre><code>
+  3	Z	q0		q1	XZ	XZ
+  6	X	q1		q1	XX	XXZ
+  5	X	q1		q1	XX	XXXZ
+  *	XX	q1		q1	X	XXZ
+  +	XX	q1		q1	X	XZ
+  λ	XZ	q1		q2	Z	Z
+  λ	Z	q2		q2	λ	λ
+  33
+</code></pre>
+
+<p>
+  Probaremos una 3 casos, uno correcto y 2 incorrectos.
+  
+  CASO CORRECTO:
+  + * 5 6 3
+</p>
+
+<pre><code>
+  3	Z	q0		q1	XZ	XZ
+  6	X	q1		q1	XX	XXZ
+  5	X	q1		q1	XX	XXXZ
+  *	XX	q1		q1	X	XXZ
+  +	XX	q1		q1	X	XZ
+  λ	XZ	q1		q2	Z	Z
+  λ	Z	q2		q2	λ	λ
+  33
+</code></pre>
+<p>
+  Pila vacía, cadena aceptada y resultado mostrado.
+  
+  
+  CASO INCORRECTO (FALTA OPERANDOS):
+  + 5
+</p>
+<pre><code>
+  5	Z	q0		q1	XZ	XZ
+</code></pre>
+<p>
+  Pila no vacía, cadena NO aceptada y NO se muestra resultado.
+
+  
+  CASO INCORRECTO (SOBRAN OPERANDOS):
+  + 5 5 5
+</p>
+<pre><code>
+  5	Z	q0		q1	XZ	XZ
+  5	X	q1		q1	XX	XXZ
+  5	X	q1		q1	XX	XXXZ
+  +	XX	q1		q1	X	XXZ
+</code></pre>
+<p>
+  Pila no vacía, cadena NO aceptada y NO se muestra resultado.
+</p>
+
+<h4>Conclusiones</h4>
+
+<p>
+  Eficacia de los Autómatas de Pila en el Parsing: Se demostró que los Autómatas de Pila (PDA) son la herramienta computacional idónea para validar Gramáticas Libres de Contexto (GLC), como las expresiones matemáticas. A diferencia de un Autómata Finito Determinista (DFA) simple que no tiene memoria, el PDA utiliza la pila para "recordar" operandos pendientes, asegurando que cada operador tenga sus dos argumentos correspondientes antes de proceder. 
+
+Ventajas de la Notación Prefija: La implementación evidenció por qué la notación prefija (y postfija) es preferida en computación sobre la notación infija tradicional. Al eliminar la necesidad de paréntesis y reglas de precedencia complejas, el algoritmo de evaluación se simplifica linealmente, reduciendo la complejidad computacional y el uso de memoria. 
+
+Importancia de las Estructuras de Datos Dinámicas: La construcción manual de la estructura Pila (utilizando struct y punteros) permitió un control total sobre la gestión de memoria. Esto valida la importancia de comprender las estructuras de datos fundamentales para manipular flujos d
+</p>
 
 
 
