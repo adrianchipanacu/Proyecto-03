@@ -386,9 +386,9 @@ int main() {
 </code></pre>
 
 <hr />
-<h2>📘 Guía de Uso</h2>
+<h2>Guía de Uso</h2>
 
-<h3>🔧 Pasos para la compilación y ejecución correcta (Linux y Windows)</h3>
+<h3>Pasos para la compilación y ejecución correcta (Linux y Windows)</h3>
 
 <h4>1. Verificar instalación del compilador C++</h4>
 <ul>
