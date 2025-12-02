@@ -419,7 +419,9 @@ int main() {
 <pre><code>g++ [nombre_archivo].cpp -o [nombre_archivo].exe</code></pre>
 
 <h4>4. Crear el archivo de entrada <code>.txt</code></h4>
-
+<p>
+  El documento debe nombrarse explícitamente como "documento.txt", de otra forma el programa no leerá la entrada.
+</p>
 <p><strong>Linux:</strong></p>
 <pre><code>nano documento.txt</code></pre>
 
@@ -452,14 +454,14 @@ int main() {
 </ul>
 <p>
   El formato del resultado impreso en "resultado.txt" tiene un formato que se compone de 6 columnas.
-  Las leemos de derecas a izquierda y explicamos que signifca cada una:
+  Las leemos de derecha a izquierda y explicamos que signifca cada una:
 </p>
 <ul>
-  <li>1. Simbolo leído de la cadena</li>
-  <li>2. Tope de pila actual, se desapila. Pueden ir uno o más símbolos.</li>
+  <li>1. Símbolo leído de la cadena</li>
+  <li>2. Tope de pila actual que se desapila. Pueden ir uno o más símbolos.</li>
   <li>3. Estado actual del autómata.</li>
   <li>4. Nuevo estado actual.</li>
-  <li>5. Simbolos apilados antes de terminar la transición.</li>
+  <li>5. Simbolo apilado antes de terminar la transición.</li>
   <li>6. Vista general de la pila tras cada transición. Los últimos símbolos apilados están a la izquierda</li>
 </ul>
 <p>
